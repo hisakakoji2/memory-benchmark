@@ -24,6 +24,12 @@ fi
 ROOT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 cd "${ROOT_DIR}"
 
+# Export for embedded Python process
+export OWNER
+export REPO
+export VISIBILITY
+export GITHUB_TOKEN
+
 python3 - <<'PY'
 import json, os, urllib.request, urllib.error
 

@@ -52,7 +52,7 @@ else
 fi
 
 ROOT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
-TASKS_JSON="${TASKS_JSON:-${ROOT_DIR}/tasks/generated_vscode_tasks.json}"
+TASKS_JSON="${TASKS_JSON:-${ROOT_DIR}/tasks/generated_practical_loop_tasks_hard.json}"
 OUT_DIR="${ROOT_DIR}/results/pair_runs"
 
 PYTHON_BIN="${PYTHON_BIN:-python3}"
@@ -65,8 +65,8 @@ fi
 
 if [[ ! -f "${TASKS_JSON}" ]]; then
   echo "Tasks file not found: ${TASKS_JSON}"
-  echo "Generate it first with:"
-  echo "  python scripts/generate_tasks_from_events.py --input_jsonl research/normalized_events_vscode.jsonl --output_json tasks/generated_vscode_tasks.json --window_size 4"
+  echo "Generate practical loop tasks first, for example:"
+  echo "  python scripts/build_practical_loop_tasks.py --input_json tasks/generated_practical_loop_tasks.json --output_json tasks/generated_practical_loop_tasks_hard.json --max_tasks 80 --hard_mode"
   exit 1
 fi
 
