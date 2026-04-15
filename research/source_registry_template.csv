@@ -1,0 +1,2 @@
+source_id,repo_url,repo_name,license,data_types,included_from,included_to,notes
+SRC-001,https://github.com/ORG/REPO,REPO,MIT,"commits;prs;issues",2024-01-01,2024-12-31,""

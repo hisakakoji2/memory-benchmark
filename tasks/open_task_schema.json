@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "OpenHistoryMemoryTask",
+  "type": "object",
+  "required": [
+    "id",
+    "title",
+    "category",
+    "session_1_memory",
+    "session_2_prompt",
+    "expected_outcomes",
+    "checks",
+    "provenance"
+  ],
+  "properties": {
+    "id": { "type": "string" },
+    "title": { "type": "string" },
+    "category": { "type": "string" },
+    "difficulty": { "type": "string", "enum": ["easy", "medium", "hard"] },
+    "repo_context": {
+      "type": "object",
+      "properties": {
+        "language": { "type": "string" },
+        "framework": { "type": "string" },
+        "test_command": { "type": "string" }
+      }
+    },
+    "session_1_memory": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "session_2_prompt": { "type": "string" },
+    "expected_outcomes": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "checks": {
+      "type": "object",
+      "required": ["must_follow_memory_constraints"],
+      "properties": {
+        "must_pass_tests": { "type": "boolean" },
+        "must_follow_memory_constraints": { "type": "boolean" },
+        "max_changed_files": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["source_id", "source_events"],
+      "properties": {
+        "source_id": { "type": "string" },
+        "source_events": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["event_type", "event_id", "url"],
+            "properties": {
+              "event_type": { "type": "string" },
+              "event_id": { "type": "string" },
+              "url": { "type": "string" }
+            }
+          }
+        },
+        "license": { "type": "string" }
+      }
+    }
+  }
+}

@@ -1,0 +1,164 @@
+{
+  "version": "0.1",
+  "description": "Practical long-term memory benchmark trial tasks for coding assistants.",
+  "tasks": [
+    {
+      "id": "TASK-001",
+      "title": "API timeout default update",
+      "category": "bugfix",
+      "difficulty": "easy",
+      "repo_context": {
+        "language": "typescript",
+        "framework": "node-express",
+        "test_command": "npm test -- api-client"
+      },
+      "session_1_memory": [
+        "Team decision from last week: default timeout must be 12 seconds (12000ms).",
+        "Use constant name DEFAULT_API_TIMEOUT_MS.",
+        "Do not add external dependencies."
+      ],
+      "session_2_prompt": "Fix flaky timeout behavior in ApiClient. Keep backward compatibility.",
+      "expected_outcomes": [
+        "Default timeout is 12000ms.",
+        "Constant name matches team decision.",
+        "Existing caller-specified timeout still overrides default."
+      ],
+      "checks": {
+        "must_pass_tests": true,
+        "must_follow_memory_constraints": true,
+        "max_changed_files": 3
+      }
+    },
+    {
+      "id": "TASK-002",
+      "title": "Naming convention carry-over",
+      "category": "refactor",
+      "difficulty": "easy",
+      "repo_context": {
+        "language": "python",
+        "framework": "fastapi",
+        "test_command": "pytest tests/test_user_profile.py"
+      },
+      "session_1_memory": [
+        "Coding standard decided earlier: DTO classes end with 'Dto'.",
+        "Serializer helper functions start with 'serialize_'."
+      ],
+      "session_2_prompt": "Add a response object for /profile endpoint and wire it in.",
+      "expected_outcomes": [
+        "New class name follows *Dto suffix.",
+        "Any new helper follows serialize_ prefix.",
+        "No endpoint contract break."
+      ],
+      "checks": {
+        "must_pass_tests": true,
+        "must_follow_memory_constraints": true,
+        "max_changed_files": 4
+      }
+    },
+    {
+      "id": "TASK-003",
+      "title": "Feature flag behavior with historical decision",
+      "category": "feature",
+      "difficulty": "medium",
+      "repo_context": {
+        "language": "typescript",
+        "framework": "react",
+        "test_command": "npm test -- settings-panel"
+      },
+      "session_1_memory": [
+        "Product decision: experimental features are hidden by default.",
+        "Flag key name is enableExperimentalTools.",
+        "When flag is missing, treat as false."
+      ],
+      "session_2_prompt": "Implement rendering of an experimental tools panel based on feature flags.",
+      "expected_outcomes": [
+        "Panel hidden unless enableExperimentalTools is true.",
+        "Missing key path still hides panel.",
+        "Existing settings UI is unchanged."
+      ],
+      "checks": {
+        "must_pass_tests": true,
+        "must_follow_memory_constraints": true,
+        "max_changed_files": 5
+      }
+    },
+    {
+      "id": "TASK-004",
+      "title": "Regression fix using previous PR note",
+      "category": "bugfix",
+      "difficulty": "medium",
+      "repo_context": {
+        "language": "go",
+        "framework": "net/http",
+        "test_command": "go test ./... -run TestRateLimit"
+      },
+      "session_1_memory": [
+        "Previous PR note: rate-limit key must include tenant_id and user_id.",
+        "Hash format was standardized as tenant:user."
+      ],
+      "session_2_prompt": "Fix unexpected cross-tenant throttling in rate limiter.",
+      "expected_outcomes": [
+        "Rate-limit key includes tenant and user.",
+        "Cross-tenant throttling is removed.",
+        "Format uses tenant:user exactly."
+      ],
+      "checks": {
+        "must_pass_tests": true,
+        "must_follow_memory_constraints": true,
+        "max_changed_files": 3
+      }
+    },
+    {
+      "id": "TASK-005",
+      "title": "Migration script with retained ordering rule",
+      "category": "data-migration",
+      "difficulty": "hard",
+      "repo_context": {
+        "language": "sql",
+        "framework": "postgres",
+        "test_command": "psql -f tests/migration_2026_04.sql"
+      },
+      "session_1_memory": [
+        "DB migration rule: additive changes first, destructive changes never in same migration.",
+        "Index naming convention: idx_<table>_<column>."
+      ],
+      "session_2_prompt": "Create migration for adding archived_at and improving query performance.",
+      "expected_outcomes": [
+        "Only additive migration included.",
+        "Index follows idx_<table>_<column> naming.",
+        "Rollback script is present."
+      ],
+      "checks": {
+        "must_pass_tests": false,
+        "must_follow_memory_constraints": true,
+        "max_changed_files": 2
+      }
+    },
+    {
+      "id": "TASK-006",
+      "title": "Cross-session context restoration in docs + code",
+      "category": "docs-and-code",
+      "difficulty": "medium",
+      "repo_context": {
+        "language": "mixed",
+        "framework": "monorepo",
+        "test_command": "npm run test:unit"
+      },
+      "session_1_memory": [
+        "Team wording rule: use 'workspace' instead of 'project' in user-facing docs.",
+        "CLI option --dry-run must be documented whenever command examples are added."
+      ],
+      "session_2_prompt": "Add a new cleanup command and write docs for it.",
+      "expected_outcomes": [
+        "Docs use workspace wording.",
+        "--dry-run example is included.",
+        "Implementation and docs are consistent."
+      ],
+      "checks": {
+        "must_pass_tests": true,
+        "must_follow_memory_constraints": true,
+        "max_changed_files": 4
+      }
+    }
+  ]
+}

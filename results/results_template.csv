@@ -1,0 +1,7 @@
+run_id,model,task_id,quality_score,efficiency_score,long_term_memory_score,practical_ux_score,penalty,total_score,notes
+trial-001,MODEL_NAME,TASK-001,0,0,0,0,0,0,""
+trial-001,MODEL_NAME,TASK-002,0,0,0,0,0,0,""
+trial-001,MODEL_NAME,TASK-003,0,0,0,0,0,0,""
+trial-001,MODEL_NAME,TASK-004,0,0,0,0,0,0,""
+trial-001,MODEL_NAME,TASK-005,0,0,0,0,0,0,""
+trial-001,MODEL_NAME,TASK-006,0,0,0,0,0,0,""
